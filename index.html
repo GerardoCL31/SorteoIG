@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorteo Instagram</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-label="Aplicacion de sorteo">
+        <aside class="panel setup-panel">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true">
+              <span></span>
+            </div>
+            <div>
+              <p class="eyebrow">Sorteo desde comentarios</p>
+              <h1>Instagram Giveaway</h1>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label for="postUrl">Publicacion</label>
+            <input id="postUrl" type="url" placeholder="https://www.instagram.com/p/..." />
+          </div>
+
+          <div class="control-group">
+            <label for="commentFile">Comentarios CSV/TXT</label>
+            <input id="commentFile" type="file" accept=".csv,.txt,.json" />
+          </div>
+
+          <div class="control-group">
+            <label for="commentPaste">Pegar comentarios</label>
+            <textarea
+              id="commentPaste"
+              rows="9"
+              placeholder="@usuario Me apunto! @amigo #sorteo&#10;usuario2,Quiero participar @cuenta"
+            ></textarea>
+          </div>
+
+          <div class="actions">
+            <button id="loadComments" class="primary-btn" type="button">
+              <span class="icon">↳</span>
+              Cargar
+            </button>
+            <button id="clearAll" class="ghost-btn" type="button" title="Limpiar datos">
+              <span class="icon">×</span>
+            </button>
+          </div>
+        </aside>
+
+        <section class="main-stage">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Panel de control</p>
+              <h2>Participantes validos</h2>
+            </div>
+            <button id="exportResult" class="ghost-btn" type="button">
+              <span class="icon">⇩</span>
+              Exportar
+            </button>
+          </div>
+
+          <section class="draw-stage" aria-live="polite">
+            <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+            <div id="winnerAvatar" class="winner-avatar">?</div>
+            <p class="status-label" id="drawStatus">Listo para sortear</p>
+            <h3 id="winnerName">Sin ganador</h3>
+            <p id="winnerComment">Carga comentarios y pulsa sortear.</p>
+            <button id="drawWinner" class="draw-btn" type="button" disabled>
+              Sortear ganador
+            </button>
+          </section>
+
+          <section class="stats-grid" aria-label="Resumen">
+            <div>
+              <span id="totalComments">0</span>
+              <p>comentarios</p>
+            </div>
+            <div>
+              <span id="validEntries">0</span>
+              <p>participantes</p>
+            </div>
+            <div>
+              <span id="duplicateCount">0</span>
+              <p>duplicados</p>
+            </div>
+            <div>
+              <span id="filteredCount">0</span>
+              <p>filtrados</p>
+            </div>
+          </section>
+
+          <section class="panel entries-panel">
+            <div class="section-head">
+              <h2>Lista</h2>
+              <div class="search-box">
+                <span class="icon">⌕</span>
+                <input id="searchEntries" type="search" placeholder="Buscar usuario o comentario" />
+              </div>
+            </div>
+            <div id="entryList" class="entry-list"></div>
+          </section>
+        </section>
+
+        <aside class="panel rules-panel">
+          <div class="section-head tight">
+            <h2>Reglas</h2>
+            <button id="saveRules" class="ghost-btn icon-only" type="button" title="Guardar reglas">
+              ✓
+            </button>
+          </div>
+
+          <label class="switch-row">
+            <span>Un comentario por usuario</span>
+            <input id="uniqueUsers" type="checkbox" checked />
+          </label>
+
+          <label class="switch-row">
+            <span>Exigir al menos una mencion</span>
+            <input id="requireMention" type="checkbox" />
+          </label>
+
+          <div class="control-group">
+            <label for="minMentions">Menciones minimas</label>
+            <input id="minMentions" type="number" min="0" max="10" value="0" />
+          </div>
+
+          <div class="control-group">
+            <label for="requiredHashtag">Hashtag requerido</label>
+            <input id="requiredHashtag" type="text" placeholder="#sorteo" />
+          </div>
+
+          <div class="control-group">
+            <label for="blockedUsers">Usuarios excluidos</label>
+            <textarea id="blockedUsers" rows="4" placeholder="@mi_cuenta&#10;@patrocinador"></textarea>
+          </div>
+
+          <div class="history">
+            <div class="section-head tight">
+              <h2>Historial</h2>
+              <button id="clearHistory" class="ghost-btn icon-only" type="button" title="Vaciar historial">
+                ×
+              </button>
+            </div>
+            <div id="historyList" class="history-list"></div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <template id="entryTemplate">
+      <article class="entry-card">
+        <div class="avatar"></div>
+        <div>
+          <h4></h4>
+          <p></p>
+        </div>
+        <span></span>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
