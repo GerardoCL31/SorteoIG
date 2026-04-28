@@ -1,25 +1,25 @@
-# Sorteo Instagram
+# Instagram Giveaway
 
-Aplicacion web estatica para hacer sorteos a partir de comentarios de Instagram exportados o pegados.
+Static web app for running giveaways from exported or pasted Instagram comments.
 
-## Uso
+## Usage
 
-1. Abre `index.html` en el navegador.
-2. Pega comentarios o carga un archivo `.csv`, `.txt` o `.json`.
-3. Ajusta reglas: usuarios unicos, menciones minimas, hashtag requerido y usuarios excluidos.
-4. Pulsa `Cargar` y despues `Sortear ganador`.
-5. Usa `Exportar` para guardar un JSON con el resultado y los participantes validos.
+1. Open `index.html` in your browser.
+2. Paste comments or upload a `.csv`, `.txt`, or `.json` file.
+3. Adjust the rules: unique users, minimum mentions, required hashtag, and excluded users.
+4. Click `Cargar` and then `Sortear ganador`.
+5. Use `Exportar` to save a JSON file with the result and the valid participants.
 
-## Formatos aceptados
+## Accepted Formats
 
-Texto por linea:
+Text, one entry per line:
 
 ```txt
 @usuario Me apunto! @amigo #sorteo
 usuario2 Quiero participar @cuenta
 ```
 
-CSV basico:
+Basic CSV:
 
 ```csv
 usuario,comentario
@@ -35,6 +35,6 @@ JSON:
 ]
 ```
 
-## Nota sobre Instagram
+## Instagram Note
 
-La app no pide credenciales ni scrapea Instagram. Para leer comentarios automaticamente desde Instagram haria falta integrar la API oficial de Meta con permisos de la cuenta, o usar una exportacion externa de comentarios.
+The app does not ask for credentials or scrape Instagram. Reading comments automatically from Instagram would require integrating the official Meta API with account permissions, or using an external comment export.
